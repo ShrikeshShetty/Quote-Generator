@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quote Generator</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    *{
+      margin: 0px;
+    }
+    body{
+      border:none
+    }
+    h1{
+      margin:20px;
+      text-align: center;
+      font-size:40px;
+      background:-webkit-linear-gradient(orange,red);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      border:none
+}
+/* Add a black background color to the top navigation */
+.topnav {
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+
+.navbar-container{
+  margin-bottom: -10px;
+}
+.navbar{
+  height: 100vh;
+  width:0;
+  background:linear-gradient(white,blue);
+  position:fixed;
+  top:0;
+  left:0;
+  overflow-x:hidden;
+  transition:0.5s;
+  padding-top:60px;
+}
+.navbar a{
+  padding:15px;
+  text-decoration:none;
+  font-size:20px;
+  color:black;
+  display:block;
+  transition:0.3s
+}
+.navbar a:hover{
+  color:rgb(255, 226, 11);
+}
+.navbar-toggle{
+  cursor:pointer;
+  background-color: white;
+  border-radius:5px;
+  margin:10px 0 0 10px;
+  padding:15px;
+  z-index:1;
+}
+.navbar-toggle span{
+  display:block;
+  height:3px;
+  width:25px;
+  background-color: #161515;
+  margin:5px 0;
+  transition:0.4s;
+} 
+.navs{
+  width:200px
+}
+    .all {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      background:linear-gradient(white,blue);
+      height:900px;
+      color:white;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+      height:400px
+    }
+
+    #quote-container {
+      max-width: 500px;
+      width: 100%;
+      margin: 50px;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s;
+    }
+
+    #quote-container:hover {
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+
+    #quote {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+
+    #author {
+      font-style: italic;
+      color: #7f8c8d;
+      margin-bottom: 20px;
+    }
+
+    #new-quote-btn {
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    #new-quote-btn:hover {
+      background-color: green;
+      color:white;
+    }
+    .login-container,
+        .signup-container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .login-container input,
+        .signup-container input {
+            margin: 10px 0;
+            padding: 8px;
+            width: 200px;
+        }
+
+        .toggle-form-btn {
+            cursor: pointer;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .toggle-form-btn:hover {
+            background-color: green;
+        }
+
+  </style>
+</head>
+<body>
+
+  <div class="topnav">
+    <h1>SKWisdom: Unleashing Inspiration,</h1>
+    </div>
+    <div class="nav">
+      <div class="navbar-container">
+        <div class="navbar-toggle" onclick="toggleNavbar()">
+          <span></span>
+          <span></span>
+          <span></span>
+      </div>
+      <div class="navbar">
+        <p style="font-size:25px; text-align:center"><b>Menu</b></p><br>
+        <a href="QuoteGenerator.html"><i class="fa-solid fa-house" style="font-size: 18px;"></i>&nbsp;&nbsp;Home</a>
+        <a href="About.html"><i class="fa-solid fa-address-card"></i>&nbsp;&nbsp;About</a>
+        <a href="contact.html"><i class="fa-solid fa-phone"></i>&nbsp;&nbsp;Contact</a>
+      </div>
+      </div>
+      </div>
+    
+  <div class="all">
+  <div id="quote-container">
+    <p id="quote">Click Below Button For Quotes</p>
+    <p id="author"></p>
+    <button id="new-quote-btn" onclick="getQuote()">New Quotes</button>
+  </div>
+
+
+
+  <script>
+    function toggleForm() {
+    const loginContainer = document.querySelector('.login-container');
+    const signupContainer = document.querySelector('.signup-container');
+    const toggleButton = document.querySelector('.toggle-form-btn');
+
+    if (loginContainer.style.display === 'flex') {
+        loginContainer.style.display = 'none';
+        signupContainer.style.display = 'flex';
+        toggleButton.textContent = 'Switch to Login';
+    } else {
+        loginContainer.style.display = 'flex';
+        signupContainer.style.display = 'none';
+        toggleButton.textContent = 'Switch to Signup';
+    }
+}
+
+
+    function getQuote() {
+      const quotes = [
+        { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+        { text: "Innovation distinguishes between a leader and a follower.", author: "Steve Jobs" },
+        { text: "Your time is limited, don't waste it living someone else's life.", author: "Steve Jobs" },
+        { text: "Be yourself; everyone else is already taken.", author: "Oscar Wilde" },
+        { text: "Strive not to be a success, but rather to be of value.", author: "Albert Einstein" },
+        { text: "Don't aim for success if you want it; just do what you love and believe in, and it will come naturally.", author: "David Frost" },
+        { text: "Success is the sum of small efforts, repeated day in and day out.", author: "Robert Collier" },
+        { text: "It's not whether you get knocked down, it's whether you get up.", author: "Vince Lombardi" },
+        { text: "You don’t have to be great to start, but you have to start to be great.", author: "Zig Ziglar" },
+        { text: "Don’t be pushed around by the fears in your mind. Be led by the dreams in your heart.", author: "Roy T. Bennet" },
+        { text: "The road to success and the road to failure are almost exactly the same.", author: "Collin R. Davis" },
+        { text: "The only limit to our realization of tomorrow will be our doubts of today.", author: "Franklin D. Roosevelt" },
+        { text: "Success is not in what you have, but who you are.", author: "Bo Bennet" },
+        { text: "The only place where success comes before work is in the dictionary.", author: "Vidal Sasoon" },
+        { text: "Do not wait to strike till the iron is hot, but make it hot by striking.", author: "William Buttler Yeats" },
+        { text: "Don't be afraid to give up the good to go for the great.", author: "John D. Rockefeller" },
+        { text: "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful", author: "Albert Schweitzer" },
+        { text: "The way to get started is to quit talking and begin doing.", author: "Walt Disney" },
+        { text: "If you are not willing to risk the usual, you will have to settle for the ordinary.", author: " Jim Rohn" },
+        { text: "The difference between a successful person and others is not a lack of strength, not a lack of knowledge, but rather a lack in will.", author: "Vince Lombardi" },
+        { text: "Hard work beats talent when talent doesn't work hard.", author: " Tim Notke" },
+        { text: "Success usually comes to those who are too busy to be looking for it.", author: "Henry David Thoreau" },
+      ];
+
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const quoteElement = document.getElementById('quote');
+      const authorElement = document.getElementById('author');
+
+      quoteElement.textContent = randomQuote.text;
+      authorElement.textContent = `- ${randomQuote.author}`;
+    }
+document.getElementById('login-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+});
+document.getElementById('signup-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+});
+    function toggleNavbar(){
+  let navbar=document.querySelector('.navbar');
+  navbar.classList.toggle("navs")
+}
+
+   </script>
+   
+</body>
+</html>
